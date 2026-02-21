@@ -1,0 +1,94 @@
+﻿Digital Arts and Media Build Team ⏺ Fashion Sustainability Subteam
+The sustainability of your clothes UNRAVELED.[a]
+
+
+While an emphasis on sustainability may seem geared toward wealthier shoppers, as awareness towards environmental and economic consequences of fast fashion rises, a growing number of consumers are more hesitant to spend their money on unsustainable options. However, due to the lack of information on the sustainability and clothing quality of clothing items, consumers aren’t able to judge items that are bad for the environment, and their wallets.
+
+
+Problem Statement: Clothing shoppers have no reliable way to assess whether an item is truly worth buying — not just in price, but in sustainability, quality, and staying power. Without knowing if a piece is a timeless staple or a micro-trend with a 3-week lifespan, shoppers can't make informed decisions about real cost per wear, leading to wasteful purchases that hurt both their wallet and the environment.
+
+
+MVP Stages:
+* Stage 1: Chrome extension for online shopping
+   * Score the items based on fiber content, ethics of company, micro-trend
+   * Translate to trendiness (Is this item just following a microtrend?) 
+   * Translate to health impact
+   * Translate to cost per wear and how long the item lasts to encourage people to care
+* Stage 2: Suggest alternatives for clothes with similar (or cheaper) cost but with better fiber content and cost per wear
+   * Requires image analysis and scraping other sites
+* Potential Stage 3: Include information about the sustainability of the company creating the clothes
+   * Possibly scraping about us page or something like that
+* Potential Stage 4: App with scanner for in-person shopping (if time)
+
+
+Micro-Trend Death Clock
+Problem: Shoppers have no way to know whether an item they're looking at is a timeless staple or a micro-trend with a 3-week lifespan — which directly determines real cost per wear and whether the purchase is wasteful.
+Solution — Web App: Enter a product name, description, or image, and the app:
+* Pulls trend velocity data (how fast posts/searches for this style are growing vs. decaying) from TikTok/Pinterest/Google Trends APIs
+* Fits a trend decay curve using a time-series model to estimate weeks until the style peaks and drops
+* Outputs a Trend Lifespan Score (Timeless → Trending → Fading → Dead) and projects CPW accounting for likely wears before style obsolescence
+* Shows: "This silhouette peaked 6 weeks ago. Projected 8 wears before trend death → $11.25/wear. A comparable classic cut: projected 40 wears → $2.25/wear."
+
+
+
+
+User Interview Questions:
+* Walk me through the last time you bought a piece of clothing (online or in-person). What were you thinking throughout the process?
+* What are the things you prioritize while shopping for clothes?
+* Have you ever regretted buying a piece of clothing? What was the reason?
+* Do you have any go to brands you trust from quality/sustainable clothing.
+* Are there brands you've stopped buying from? What made you switch?
+* How often do you think about the fiber composition of your clothing?
+* How do you currently research a clothing item before buying it?
+* Have you ever tried to look up whether a brand is sustainable?
+* Would you be willing to spend more on a longer-lasting item if you could see exactly how the cost per wear compares to a cheaper version?
+* How do you prioritize price when you’re shopping? Do you treat budgets as a hard line or more of a guideline?
+* Do you shop for clothing more on your phone or laptop?
+* If a tool flagged a product as low quality while you were shopping, would that change your decision, or would you still buy it?
+* If you saw a suggestion for a similar item with better quality around the same price range, how likely are you to click on it?
+
+
+Tech Stack:
+Frontend
+
+
+Chrome Extension (Stage 1 & 2)
+* Manifest V3 — current Chrome extension standard; required for any new extension submission
+* React + TypeScript — build the popup overlay UI as a component tree; much cleaner than vanilla JS for dynamic scoring panels
+* Tailwind CSS — fast styling for the sidebar/overlay widget
+* Vite — bundles your React extension fast; better DX than Webpack for this use case
+* The extension has two contexts: a content script (injected into the shopping page DOM to extract product data) and a popup/side panel (React UI showing the scores)
+Web App — Micro-Trend Death Clock (Stage 1+)
+* Next.js 16+ (App Router) + TypeScript — handles both the marketing landing page and the trend analyzer tool in one codebase; server components for fast initial load
+* Tailwind CSS + shadcn/ui [b]— pre-built accessible components (cards, sliders, badges) that match the "Unravel" dashboard aesthetic fast
+* Framer Motion — animate the Trend Lifespan Score gauge (Timeless → Dead) for the demo wow factor[c]
+Backend
+API Layer
+* FastAPI (Python) — main backend for all scoring, scraping, and ML logic[d]; Python is the right choice here because your ML/scraping libraries are all Python-native
+* Pydantic v2 — request/response validation baked into FastAPI; enforces clean data contracts between extension and backend
+* Uvicorn — ASGI server for FastAPI
+Authentication & Database
+* Supabase — you already know this; use it for:[e]
+   * PostgreSQL — store your fiber scoring lookup table, brand sustainability ratings, and cached trend data
+   * pgvector extension — vector similarity search for Stage 2 (alternative clothing suggestions by embedding similarity)
+   * Supabase Auth — if you add user accounts (save scores, track CPW over time)
+   * Supabase Storage — store product images for CLIP analysis in Stage 2
+Caching
+* Redis (via Upstash) — cache trend query results so you're not hammering Google Trends / TikTok API on every request; trend data for a given style keyword only needs to refresh every few hours; Upstash has a free tier that's p[f]
+
+
+
+
+Rating Scale:
+* Since fiber content equates to 100%, we can rank the types of fabrics/fibers and create a weighted average to rank each item
+[a]5 total reactions
+Damodar Kamani reacted with 🍆 at 2026-02-21 17:12 PM
+Damodar Kamani reacted with 🫶 at 2026-02-21 17:12 PM
+Damodar Kamani reacted with 🙄 at 2026-02-21 17:12 PM
+Damodar Kamani reacted with 🦍 at 2026-02-21 17:13 PM
+Damodar Kamani reacted with 🦥 at 2026-02-21 17:13 PM
+[b]Maybe
+[c]Possibly if we have time, if not Gemini 3.1 pro animation -> web
+[d]pytorch, sklearn, etc.
+[e]Fire
+[f]Don't thing we need caching, not working at distributed scale
