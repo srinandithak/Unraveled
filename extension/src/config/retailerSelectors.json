@@ -1,0 +1,134 @@
+{
+  "zara.com": {
+    "retailer": "Zara",
+    "productUrlPatterns": ["/p", "-p", "product"],
+    "nameSelectors": [
+      "h1[data-qa-qualifier='product-name']",
+      "h1"
+    ],
+    "priceSelectors": [
+      "[data-qa='product-price-current']",
+      "[itemprop='price']",
+      ".money-amount__main"
+    ],
+    "materialSelectors": [
+      "[data-qa*='composition']",
+      "[data-qa*='material']",
+      "main"
+    ],
+    "descriptionSelectors": [
+      "[data-qa='product-detail-description']",
+      "main"
+    ],
+    "imageSelectors": [
+      "img[data-qa='product-image']",
+      "main img"
+    ]
+  },
+  "hm.com": {
+    "retailer": "H&M",
+    "productUrlPatterns": ["productpage", "product", "/p"],
+    "nameSelectors": [
+      "h1",
+      "[data-testid='product-name']"
+    ],
+    "priceSelectors": [
+      "[data-testid='formatted-price']",
+      "[itemprop='price']",
+      "span[data-testid='price-value']"
+    ],
+    "materialSelectors": [
+      "[data-testid='description']",
+      "[data-testid='product-detail-material']",
+      "main"
+    ],
+    "descriptionSelectors": [
+      "[data-testid='description']",
+      "main"
+    ],
+    "imageSelectors": [
+      "img[data-testid='product-image']",
+      "main img"
+    ]
+  },
+  "asos.com": {
+    "retailer": "ASOS",
+    "productUrlPatterns": ["/prd/", "product", "item"],
+    "nameSelectors": [
+      "h1",
+      "[data-testid='product-name']"
+    ],
+    "priceSelectors": [
+      "[data-testid='current-price']",
+      "[data-testid='product-price']",
+      "[itemprop='price']"
+    ],
+    "materialSelectors": [
+      "[data-testid='about-me']",
+      "[id*='about-me']",
+      "main"
+    ],
+    "descriptionSelectors": [
+      "[data-testid='description']",
+      "main"
+    ],
+    "imageSelectors": [
+      "img[data-testid='image']",
+      "main img"
+    ]
+  },
+  "shein.com": {
+    "retailer": "Shein",
+    "productUrlPatterns": ["/goods/", "product", "/item"],
+    "nameSelectors": [
+      "h1",
+      "[data-testid='product-intro-name']"
+    ],
+    "priceSelectors": [
+      "[data-testid='product-intro-price']",
+      "[itemprop='price']",
+      ".from"
+    ],
+    "materialSelectors": [
+      "[data-testid='product-detail-description']",
+      "[data-testid='product-intro-detail']",
+      "main"
+    ],
+    "descriptionSelectors": [
+      "[data-testid='product-detail-description']",
+      "main"
+    ],
+    "imageSelectors": [
+      "img[data-testid='product-image']",
+      "main img"
+    ]
+  },
+  "amazon.com": {
+    "retailer": "Amazon Fashion",
+    "productUrlPatterns": ["/dp/", "/gp/product", "fashion"],
+    "nameSelectors": [
+      "#productTitle",
+      "h1 span"
+    ],
+    "priceSelectors": [
+      ".a-price .a-offscreen",
+      "#corePriceDisplay_desktop_feature_div .a-offscreen",
+      "[itemprop='price']"
+    ],
+    "materialSelectors": [
+      "#productFactsDesktop_feature_div",
+      "#detailBullets_feature_div",
+      "#productDescription",
+      "#aplus_feature_div"
+    ],
+    "descriptionSelectors": [
+      "#productDescription",
+      "#feature-bullets",
+      "#aplus_feature_div"
+    ],
+    "imageSelectors": [
+      "#landingImage",
+      "#imgTagWrapperId img"
+    ]
+  }
+}

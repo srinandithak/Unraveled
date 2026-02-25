@@ -1,0 +1,29 @@
+#unravel-extension-badge {
+  position: absolute;
+  z-index: 2147483646;
+  background: #fffef9;
+  border: 1px solid rgba(19, 111, 80, 0.35);
+  border-radius: 10px;
+  padding: 8px 10px;
+  box-shadow: 0 8px 20px rgba(11, 34, 27, 0.16);
+  color: #1f2522;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  max-width: 180px;
+}
+
+#unravel-extension-badge strong {
+  display: block;
+  color: #136f50;
+  margin-bottom: 3px;
+}
+
+#unravel-extension-badge[data-grade="C"],
+#unravel-extension-badge[data-grade="D"] {
+  border-color: rgba(200, 139, 43, 0.4);
+}
+
+#unravel-extension-badge[data-grade="F"] {
+  border-color: rgba(158, 42, 43, 0.45);
+}
