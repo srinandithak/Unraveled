@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  margin: 0;
+  width: 360px;
+  min-height: 560px;
+  background: linear-gradient(160deg, #f9f6ef 0%, #f3ede0 100%);
+  color: #1f2522;
+  font-family: "Avenir Next", "Avenir", "Segoe UI", sans-serif;
+}
+
+.popup-shell {
+  padding: 14px;
+}
