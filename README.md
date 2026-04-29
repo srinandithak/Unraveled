@@ -1,7 +1,9 @@
 # Unraveled
-# Demo Video
+## Demo Video
 
-https://github.com/srinandithak/Unraveled/releases/download/v1.0.0/Unraveled.Demo.Video.mp4
+<video src="https://github.com/srinandithak/Unraveled/releases/download/v1.0.0/Unraveled.Demo.Video.mp4" controls="controls" style="max-width: 100%;">
+  Your browser does not support the video tag.
+</video>
 
 ## Supabase organization
 
