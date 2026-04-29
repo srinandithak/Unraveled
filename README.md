@@ -1,4 +1,7 @@
 # Unraveled
+# Demo Video
+
+https://github.com/srinandithak/Unraveled/releases/download/v1.0.0/Unraveled.Demo.Video.mp4
 
 ## Supabase organization
 
